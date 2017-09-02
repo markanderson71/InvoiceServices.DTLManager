@@ -2,11 +2,13 @@
 <Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.0</ProjectVersion>
-    <DockerTargetOS>Windows</DockerTargetOS>
     <ProjectGuid>221910d4-f77c-4bb2-bac7-be53b17cab3d</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://{ServiceIPAddress}/api/values</DockerServiceUrl>
     <DockerServiceName>invoiceservices.dtlmanager</DockerServiceName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DockerTargetOS>Linux</DockerTargetOS>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.ci.build.yml" />
