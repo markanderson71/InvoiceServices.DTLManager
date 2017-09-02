@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  invoiceservices.dtlmanager:
+    image: invoiceservices.dtlmanager
+    build:
+      context: ./InvoiceServices.DTLManager
+      dockerfile: Dockerfile
