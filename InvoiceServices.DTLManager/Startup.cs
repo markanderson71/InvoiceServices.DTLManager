@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using InvoiceServices.DTLManager.Core;
+using InvoiceServices.DTLManager.DB;
+
 
 namespace InvoiceServices.DTLManager
 {
@@ -23,8 +26,11 @@ namespace InvoiceServices.DTLManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddLogging();
+          
             services.AddMvc();
+            services.AddScoped<IRepository,MongoDb>();
+          
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
