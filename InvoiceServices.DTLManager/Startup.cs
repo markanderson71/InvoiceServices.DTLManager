@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using InvoiceServices.DTLManager.Core;
 using InvoiceServices.DTLManager.DB;
-
+using AutoMapper;
 
 namespace InvoiceServices.DTLManager
 {
@@ -26,8 +26,14 @@ namespace InvoiceServices.DTLManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          
             services.AddMvc();
+
+            var config = new AutoMapper.MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfigurationProfile()); });
+            var mapper = config.CreateMapper();
+            services.AddSingleton<IMapper>(mapper);
+            
+
+            
             services.AddScoped<IRepository,MongoDb>();
           
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InvoiceServices.DTLManager.Core.Model
 {
-    public class LineItem
+    public class LineItem:ILineItems
     {
 
         public string Id { get; set; }
