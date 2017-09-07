@@ -17,14 +17,14 @@ namespace InvoiceServices.DTLManager.DB
 
         public IMongoCollection<LineItem> InvoiceCollection { get; }
 
-        public MongoDb()
+        public MongoDb(DatabaseSettings dbSettings)
         {
 
-            DatabaseSettings dbSettings = new DatabaseSettings
-            {
-                ConnectionString = "mongodb://localhost:27017", DatabaseName = "InvoiceDetails"
+            //DatabaseSettings dbSettings = new DatabaseSettings
+            //{
+            //    ConnectionString = "mongodb://mongodb", DatabaseName = "InvoiceDetails"
 
-            };
+            //};
 
             this.client = new MongoClient(dbSettings.ConnectionString);
             this.database = client.GetDatabase(dbSettings.DatabaseName);

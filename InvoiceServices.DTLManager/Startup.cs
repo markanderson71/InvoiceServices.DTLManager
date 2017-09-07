@@ -31,8 +31,14 @@ namespace InvoiceServices.DTLManager
             var config = new AutoMapper.MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfigurationProfile()); });
             var mapper = config.CreateMapper();
             services.AddSingleton<IMapper>(mapper);
-            
 
+
+            services.Configure<DatabaseSettings>(c =>
+            { 
+                c.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                c.DatabaseName = Configuration.GetSection("MongoConnection:Database").Value;
+            });
+            services.AddScoped(cfg => cfg.GetService<IOptions<DatabaseSettings>>().Value);
             
             services.AddScoped<IRepository,MongoDb>();
           
