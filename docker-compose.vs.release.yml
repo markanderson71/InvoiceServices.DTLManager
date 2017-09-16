@@ -3,7 +3,7 @@ version: '2'
 services:
   invoiceservices.dtlmanager:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Release
     ports:
       - "80"
 

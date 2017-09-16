@@ -12,5 +12,6 @@ namespace InvoiceServices.DTLManager.Core
 
         string Add(LineItem lineItem);
         IEnumerable<LineItem> GetAll();
+        bool IsAvailable();
     }
 }

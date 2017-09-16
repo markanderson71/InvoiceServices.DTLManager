@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
+
 namespace InvoiceServices.DTLManager.DB
 {
     public class MongoDb : IRepository
@@ -60,6 +61,15 @@ namespace InvoiceServices.DTLManager.DB
         public IEnumerable<LineItem> GetAll()
         {
             return InvoiceCollection.AsQueryable().Where(_ => true);
+        }
+
+        public bool IsAvailable()
+        {
+            var command = new BsonDocumentCommand<BsonDocument>(new BsonDocument { { "dbstats", 1 }, { "scale", 1 } });
+
+            var result = database.RunCommand<BsonDocument>(command);
+
+            return true;
         }
     }
 }
