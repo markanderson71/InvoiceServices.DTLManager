@@ -23,6 +23,7 @@ namespace InvoiceServices.DTLManager.Controllers
             logger.LogInformation("Health Check Initialized");
         }
 
+        [HttpGet]
         public Task<IActionResult> Get()
         {
             string message = "N/A";

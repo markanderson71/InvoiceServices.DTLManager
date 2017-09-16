@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using InvoiceServices.DTLManager.Core;
 using InvoiceServices.DTLManager.DB;
 using AutoMapper;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace InvoiceServices.DTLManager
 {
@@ -32,6 +33,10 @@ namespace InvoiceServices.DTLManager
             var mapper = config.CreateMapper();
             services.AddSingleton<IMapper>(mapper);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Invoice Detail Management Service", Version = "v1" });
+            });
 
             services.Configure<DatabaseSettings>(c =>
             { 
@@ -47,7 +52,8 @@ namespace InvoiceServices.DTLManager
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
+
+            app.UseSwagger();
 
             if (env.IsDevelopment())
             {
@@ -55,6 +61,10 @@ namespace InvoiceServices.DTLManager
             }
 
             app.UseMvc();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "CMS V1");
+             });
         }
     }
 }
