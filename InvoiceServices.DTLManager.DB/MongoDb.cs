@@ -40,6 +40,7 @@ namespace InvoiceServices.DTLManager.DB
         private static void SetSerializationForObjectId()
         {
             BsonClassMap.RegisterClassMap<LineItem>(cm => { cm.AutoMap(); cm.IdMemberMap.SetSerializer(new StringSerializer(BsonType.ObjectId)); });
+            BsonClassMap.RegisterClassMap<LineItem>(cm => { cm.AutoMap(); cm.UnmapMember(m => m.LineItemTotal); });
             // BsonClassMap.RegisterClassMap<Customer>(cm => { cm.AutoMap(); cm.IdMemberMap(new StringSerializer(BsonType.ObjectId)); });
         }
 
