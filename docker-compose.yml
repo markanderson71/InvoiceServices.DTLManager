@@ -3,21 +3,23 @@ version: '2'
 services:
   mongodtldb:
     image: mongo:latest
-    container_name: "mongodb"
+    container_name: "mongodtldb"
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
     volumes:
       - ./data/db:/data/db
     ports:
-        - 27017:27017
+        - "27027:27017"
     command: mongod
 
   invoiceservices.dtlmanager:
-    image: invoiceservices.dtlmanager
+    image: markanderson71/billingservices:dtlManager
     build:
       context: ./InvoiceServices.DTLManager
       dockerfile: Dockerfile
+    ports: 
+      - "666:80"
     depends_on: 
         - mongodtldb
     links:

@@ -10,6 +10,7 @@ using InvoiceServices.DTLManager.Core.Model;
 using AutoMapper;
 using InvoiceServices.DTLManager.ViewModels;
 
+//Note a Better Name would be InvoiceService.LineItemManager (LIM)
 namespace InvoiceServices.DTLManager.Controllers
 {
     [Produces("application/json")]

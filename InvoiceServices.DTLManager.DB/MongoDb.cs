@@ -20,12 +20,7 @@ namespace InvoiceServices.DTLManager.DB
 
         public MongoDb(DatabaseSettings dbSettings)
         {
-
-            //DatabaseSettings dbSettings = new DatabaseSettings
-            //{
-            //    ConnectionString = "mongodb://mongodb", DatabaseName = "InvoiceDetails"
-
-            //};
+                        
 
             this.client = new MongoClient(dbSettings.ConnectionString);
             this.database = client.GetDatabase(dbSettings.DatabaseName);
