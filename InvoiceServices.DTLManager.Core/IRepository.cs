@@ -11,7 +11,8 @@ namespace InvoiceServices.DTLManager.Core
         LineItem GetItem(string itemId);
 
         string Add(LineItem lineItem);
-        IEnumerable<LineItem> GetAll();
+        IEnumerable<LineItem> GetAllCreated();
         bool IsAvailable();
+        void Delete(string itemId);
     }
 }

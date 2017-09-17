@@ -59,9 +59,9 @@ namespace InvoiceServices.DTLManager.DB
         }
 
 
-        public IEnumerable<LineItem> GetAll()
+        public IEnumerable<LineItem> GetAllCreated()
         {
-            return InvoiceCollection.AsQueryable().Where(_ => true);
+            return InvoiceCollection.AsQueryable().Where(l => l.Status == "created");
         }
 
         public bool IsAvailable()
@@ -71,6 +71,28 @@ namespace InvoiceServices.DTLManager.DB
             var result = database.RunCommand<BsonDocument>(command);
 
             return true;
+        }
+
+        public void Delete(string itemId)
+        {
+            LineItem existingItem = GetItem(itemId);
+            if (existingItem != null)
+            {
+                if (existingItem.Status == "canceled")
+                {
+                    throw new ArgumentOutOfRangeException($"ItemId was found but already canceled in the database for value:{itemId}");
+                }
+                else
+                {
+                    existingItem.Status = "canceled";
+                    existingItem.ModifiedOn = DateTime.UtcNow;
+                    InvoiceCollection.FindOneAndReplace<LineItem>(p => p.Id == itemId, existingItem);
+                }
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException($"ItemId was not found in the database for value:{itemId}");
+            }
         }
     }
 }

@@ -29,7 +29,12 @@ namespace InvoiceServices.DTLManager.Core
 
         public IEnumerable<LineItem> GetAll()
         {
-            return repo.GetAll();
+            return repo.GetAllCreated();
+        }
+
+        public void Cancel(string itemId)
+        {
+            repo.Delete(itemId);
         }
 
     }

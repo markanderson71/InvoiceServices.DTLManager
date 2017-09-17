@@ -49,13 +49,19 @@ namespace InvoiceServices.DTLManager.Controllers
             return Ok(detailManager.GetItem(id));
         }
 
-     
+
 
         [HttpGet]
         public IActionResult GetAll()
         {
-
             return Ok(detailManager.GetAll());
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            detailManager.Cancel(id);
+            return Ok();
         }
 
 
