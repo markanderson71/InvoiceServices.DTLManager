@@ -22,6 +22,7 @@ namespace InvoiceServices.DTLManager.Core
 
         public string Add(LineItem newLineItem)
         {
+            newLineItem.Status = "created";
             return repo.Add(newLineItem);
         }
 

@@ -7,6 +7,14 @@ namespace InvoiceServices.DTLManager.Core.Model
     public class LineItem:ILineItems
     {
 
+        public LineItem()
+        {
+            CreatedOn = DateTime.UtcNow;
+            ModifiedOn = DateTime.UtcNow;
+            Status = "new";
+        }
+
+
         public string Id { get; set; }
         public string InvoiceId { get; set;}
         public string Description { get; set; }

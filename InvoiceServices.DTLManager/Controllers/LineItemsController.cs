@@ -28,18 +28,28 @@ namespace InvoiceServices.DTLManager.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult Add([FromBody] LineItemViewModel lineItemViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                LineItem lineItem = mapper.Map<LineItem>(lineItemViewModel);
+                return Ok(detailManager.Add(lineItem));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
             return Ok(detailManager.GetItem(id));
         }
 
-        [HttpPost]
-        public IActionResult Add([FromBody] LineItemViewModel lineItemViewModel)
-        {
-            LineItem lineItem = mapper.Map<LineItem>(lineItemViewModel);
-            return Ok(detailManager.Add(lineItem));
-        }
+     
 
         [HttpGet]
         public IActionResult GetAll()
