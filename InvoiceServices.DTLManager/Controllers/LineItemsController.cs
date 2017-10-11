@@ -10,7 +10,7 @@ using InvoiceServices.DTLManager.Core.Model;
 using AutoMapper;
 using InvoiceServices.DTLManager.ViewModels;
 
-//Note a Better Name would be InvoiceService.LineItemManager (LIM)
+//TODO: Note a Better Name would be InvoiceService.LineItemManager (LIM)
 namespace InvoiceServices.DTLManager.Controllers
 {
     [Produces("application/json")]
@@ -44,7 +44,7 @@ namespace InvoiceServices.DTLManager.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name ="GetLineItemById")]
         public IActionResult Get(string id)
         {
             return Ok(detailManager.GetItem(id));

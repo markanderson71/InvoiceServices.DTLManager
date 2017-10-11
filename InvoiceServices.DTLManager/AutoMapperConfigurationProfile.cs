@@ -13,8 +13,9 @@ namespace InvoiceServices.DTLManager
 
         public AutoMapperConfigurationProfile()
         {
-          CreateMap<string, string>().ConvertUsing(new NullStringConverter());
+            CreateMap<string, string>().ConvertUsing(new NullStringConverter());
             CreateMap<LineItem, LineItemViewModel>().ReverseMap();
+            CreateMap<InvoiceLineItemPost, LineItem > ().ReverseMap();
         }
     }
 
